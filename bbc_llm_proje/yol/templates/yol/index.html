@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Türkiye Yol Ücretleri Sorgulama</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/yol/style.css">
+</head>
+<body>
+    <div id="weather1"></div>
+    <div id="weather2"></div>
+    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d4056970.000697471!2d34.642086847402176!3d39.49078104303514!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e1!3m2!1str!2str!4v1747615226955!5m2!1str!2str"
+        allowfullscreen=""  
+        loading="lazy" 
+        referrerpolicy="no-referrer-when-downgrade"
+        class="map">
+    </iframe>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card mt-5">
+                    <div onclick="toggleWindow()" class="card-header bg-primary text-white" style="user-select: none; cursor: pointer;">
+                        <h3 class="text-center">Türkiye Yol Ücretleri ve Rota Planlama</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="mb-4">
+                            <p>Yolculuk planınız için özelleştirilmiş rota ve ücret bilgisi almak için aşağıdaki formu doldurun.</p>
+                        </div>
+                        
+                        <form id="sorguForm">
+                            <!-- Rota Bilgileri -->
+                            <div class="mb-4 p-3 border rounded">
+                                <h5 class="mb-3">Rota Bilgileri</h5>
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="departure" class="form-label">Başlangıç Noktası:</label>
+                                        <select class="form-select" id="departure" required>
+                                            <option value="" selected disabled>Seçiniz</option>
+                                            <option value="Adana">Adana</option>
+                                            <option value="Adıyaman">Adıyaman</option>
+                                            <option value="Afyonkarahisar">Afyonkarahisar</option>
+                                            <option value="Ağrı">Ağrı</option>
+                                            <option value="Amasya">Amasya</option>
+                                            <option value="Ankara">Ankara</option>
+                                            <option value="Antalya">Antalya</option>
+                                            <option value="Artvin">Artvin</option>
+                                            <option value="Aydın">Aydın</option>
+                                            <option value="Balıkesir">Balıkesir</option>
+                                            <option value="Bilecik">Bilecik</option>
+                                            <option value="Bingöl">Bingöl</option>
+                                            <option value="Bitlis">Bitlis</option>
+                                            <option value="Bolu">Bolu</option>
+                                            <option value="Burdur">Burdur</option>
+                                            <option value="Bursa">Bursa</option>
+                                            <option value="Çanakkale">Çanakkale</option>
+                                            <option value="Çankırı">Çankırı</option>
+                                            <option value="Çorum">Çorum</option>
+                                            <option value="Denizli">Denizli</option>
+                                            <option value="Diyarbakır">Diyarbakır</option>
+                                            <option value="Edirne">Edirne</option>
+                                            <option value="Elazığ">Elazığ</option>
+                                            <option value="Erzincan">Erzincan</option>
+                                            <option value="Erzurum">Erzurum</option>
+                                            <option value="Eskişehir">Eskişehir</option>
+                                            <option value="Gaziantep">Gaziantep</option>
+                                            <option value="Giresun">Giresun</option>
+                                            <option value="Gümüşhane">Gümüşhane</option>
+                                            <option value="Hakkari">Hakkari</option>
+                                            <option value="Hatay">Hatay</option>
+                                            <option value="Isparta">Isparta</option>
+                                            <option value="Mersin">Mersin</option>
+                                            <option value="İstanbul">İstanbul</option>
+                                            <option value="İzmir">İzmir</option>
+                                            <option value="Kars">Kars</option>
+                                            <option value="Kastamonu">Kastamonu</option>
+                                            <option value="Kayseri">Kayseri</option>
+                                            <option value="Kırklareli">Kırklareli</option>
+                                            <option value="Kırşehir">Kırşehir</option>
+                                            <option value="Kocaeli">Kocaeli</option>
+                                            <option value="Konya">Konya</option>
+                                            <option value="Kütahya">Kütahya</option>
+                                            <option value="Malatya">Malatya</option>
+                                            <option value="Manisa">Manisa</option>
+                                            <option value="Kahramanmaraş">Kahramanmaraş</option>
+                                            <option value="Mardin">Mardin</option>
+                                            <option value="Muğla">Muğla</option>
+                                            <option value="Muş">Muş</option>
+                                            <option value="Nevşehir">Nevşehir</option>
+                                            <option value="Niğde">Niğde</option>
+                                            <option value="Ordu">Ordu</option>
+                                            <option value="Rize">Rize</option>
+                                            <option value="Sakarya">Sakarya</option>
+                                            <option value="Samsun">Samsun</option>
+                                            <option value="Siirt">Siirt</option>
+                                            <option value="Sinop">Sinop</option>
+                                            <option value="Sivas">Sivas</option>
+                                            <option value="Tekirdağ">Tekirdağ</option>
+                                            <option value="Tokat">Tokat</option>
+                                            <option value="Trabzon">Trabzon</option>
+                                            <option value="Tunceli">Tunceli</option>
+                                            <option value="Şanlıurfa">Şanlıurfa</option>
+                                            <option value="Uşak">Uşak</option>
+                                            <option value="Van">Van</option>
+                                            <option value="Yozgat">Yozgat</option>
+                                            <option value="Zonguldak">Zonguldak</option>
+                                            <option value="Aksaray">Aksaray</option>
+                                            <option value="Bayburt">Bayburt</option>
+                                            <option value="Karaman">Karaman</option>
+                                            <option value="Kırıkkale">Kırıkkale</option>
+                                            <option value="Batman">Batman</option>
+                                            <option value="Şırnak">Şırnak</option>
+                                            <option value="Bartın">Bartın</option>
+                                            <option value="Ardahan">Ardahan</option>
+                                            <option value="Iğdır">Iğdır</option>
+                                            <option value="Yalova">Yalova</option>
+                                            <option value="Karabük">Karabük</option>
+                                            <option value="Kilis">Kilis</option>
+                                            <option value="Osmaniye">Osmaniye</option>
+                                            <option value="Düzce">Düzce</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="arrival" class="form-label">Varış Noktası:</label>
+                                        <select class="form-select" id="arrival" required>
+                                            <option value="" selected disabled>Seçiniz</option>
+                                            <option value="Ankara">Ankara</option>
+                                            <option value="Adana">Adana</option>
+                                            <option value="Adıyaman">Adıyaman</option>
+                                            <option value="Afyonkarahisar">Afyonkarahisar</option>
+                                            <option value="Ağrı">Ağrı</option>
+                                            <option value="Amasya">Amasya</option>
+                                            <option value="Antalya">Antalya</option>
+                                            <option value="Artvin">Artvin</option>
+                                            <option value="Aydın">Aydın</option>
+                                            <option value="Balıkesir">Balıkesir</option>
+                                            <option value="Bilecik">Bilecik</option>
+                                            <option value="Bingöl">Bingöl</option>
+                                            <option value="Bitlis">Bitlis</option>
+                                            <option value="Bolu">Bolu</option>
+                                            <option value="Burdur">Burdur</option>
+                                            <option value="Bursa">Bursa</option>
+                                            <option value="Çanakkale">Çanakkale</option>
+                                            <option value="Çankırı">Çankırı</option>
+                                            <option value="Çorum">Çorum</option>
+                                            <option value="Denizli">Denizli</option>
+                                            <option value="Diyarbakır">Diyarbakır</option>
+                                            <option value="Edirne">Edirne</option>
+                                            <option value="Elazığ">Elazığ</option>
+                                            <option value="Erzincan">Erzincan</option>
+                                            <option value="Erzurum">Erzurum</option>
+                                            <option value="Eskişehir">Eskişehir</option>
+                                            <option value="Gaziantep">Gaziantep</option>
+                                            <option value="Giresun">Giresun</option>
+                                            <option value="Gümüşhane">Gümüşhane</option>
+                                            <option value="Hakkari">Hakkari</option>
+                                            <option value="Hatay">Hatay</option>
+                                            <option value="Isparta">Isparta</option>
+                                            <option value="Mersin">Mersin</option>
+                                            <option value="İstanbul">İstanbul</option>
+                                            <option value="İzmir">İzmir</option>
+                                            <option value="Kars">Kars</option>
+                                            <option value="Kastamonu">Kastamonu</option>
+                                            <option value="Kayseri">Kayseri</option>
+                                            <option value="Kırklareli">Kırklareli</option>
+                                            <option value="Kırşehir">Kırşehir</option>
+                                            <option value="Kocaeli">Kocaeli</option>
+                                            <option value="Konya">Konya</option>
+                                            <option value="Kütahya">Kütahya</option>
+                                            <option value="Malatya">Malatya</option>
+                                            <option value="Manisa">Manisa</option>
+                                            <option value="Kahramanmaraş">Kahramanmaraş</option>
+                                            <option value="Mardin">Mardin</option>
+                                            <option value="Muğla">Muğla</option>
+                                            <option value="Muş">Muş</option>
+                                            <option value="Nevşehir">Nevşehir</option>
+                                            <option value="Niğde">Niğde</option>
+                                            <option value="Ordu">Ordu</option>
+                                            <option value="Rize">Rize</option>
+                                            <option value="Sakarya">Sakarya</option>
+                                            <option value="Samsun">Samsun</option>
+                                            <option value="Siirt">Siirt</option>
+                                            <option value="Sinop">Sinop</option>
+                                            <option value="Sivas">Sivas</option>
+                                            <option value="Tekirdağ">Tekirdağ</option>
+                                            <option value="Tokat">Tokat</option>
+                                            <option value="Trabzon">Trabzon</option>
+                                            <option value="Tunceli">Tunceli</option>
+                                            <option value="Şanlıurfa">Şanlıurfa</option>
+                                            <option value="Uşak">Uşak</option>
+                                            <option value="Van">Van</option>
+                                            <option value="Yozgat">Yozgat</option>
+                                            <option value="Zonguldak">Zonguldak</option>
+                                            <option value="Aksaray">Aksaray</option>
+                                            <option value="Bayburt">Bayburt</option>
+                                            <option value="Karaman">Karaman</option>
+                                            <option value="Kırıkkale">Kırıkkale</option>
+                                            <option value="Batman">Batman</option>
+                                            <option value="Şırnak">Şırnak</option>
+                                            <option value="Bartın">Bartın</option>
+                                            <option value="Ardahan">Ardahan</option>
+                                            <option value="Iğdır">Iğdır</option>
+                                            <option value="Yalova">Yalova</option>
+                                            <option value="Karabük">Karabük</option>
+                                            <option value="Kilis">Kilis</option>
+                                            <option value="Osmaniye">Osmaniye</option>
+                                            <option value="Düzce">Düzce</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="question" class="form-label">Ek Notlar veya Özel İstekler:</label>
+                                    <textarea class="form-control" id="question" rows="2" placeholder="Özel notlarınızı veya eklemek istediğiniz detayları yazabilirsiniz..."></textarea>
+                                </div>
+                            </div>
+
+                            <!-- Araç Bilgileri -->
+                            <div class="mb-4 p-3 border rounded">
+                                <h5 class="mb-3">Araç Bilgileri</h5>
+                                <div class="mb-3">
+                                    <label for="vehicle_class" class="form-label">Araç Sınıfı:</label>
+                                    <select class="form-select" id="vehicle_class" required>
+                                        <option value="" selected disabled>Seçiniz</option>
+                                        <option value="1. Sınıf">1. Sınıf (Otomobil, Kamyonet)</option>
+                                        <option value="2. Sınıf">2. Sınıf (Minibüs, Panelvan)</option>
+                                        <option value="3. Sınıf">3. Sınıf (Otobüs, Kamyon)</option>
+                                        <option value="4. Sınıf">4. Sınıf (2 Akslı Araçlar)</option>
+                                        <option value="5. Sınıf">5. Sınıf (3+ Akslı Araçlar)</option>
+                                        <option value="6. Sınıf">6. Sınıf (Motorsiklet)</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3" style="display: none;">
+                                    <label for="fuel_economy" class="form-label">Yakıt Tüketimi (L/100km):</label>
+                                    <input type="number" step="0.1" class="form-control" id="fuel_economy" placeholder="Örnek: 6.5">
+                                </div>
+                            </div>
+
+                            <!-- Rota Tercihleri -->
+                            <div class="mb-4 p-3 border rounded">
+                                <h5 class="mb-3">Rota Tercihleri</h5>
+                                <div class="mb-3">
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" id="paid_roads">
+                                        <label class="form-check-label" for="paid_roads">Ücretli yolları kullanma</label>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" id="fast_routes">
+                                        <label class="form-check-label" for="fast_routes">Hızlı yolları tercih et</label>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" id="fuel_efficient">
+                                        <label class="form-check-label" for="fuel_efficient">Yakıt ekonomisini önceliklendir</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <button type="submit" id="submit-button" class="btn btn-primary">Rota Oluştur</button>
+                        </form>
+                        
+                        <div id="sonuc" class="mt-4 d-none">
+                            <h4>Sonuç:</h4>
+                            <div class="card">
+                                <div class="card-body" id="cevap">
+                                    <!-- Cevap buraya gelecek -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        
+    function toggleWindow(){
+        if(document.querySelector('.card-body').style.display == 'none'){
+            document.querySelector('.map').style.pointerEvents = 'none';
+            document.querySelector('.card-body').style.display = 'block';
+        }else{
+            document.querySelector('.map').style.pointerEvents = 'all';
+            document.querySelector('.card-body').style.display = 'none';
+        }
+    }
+
+    document.getElementById('sorguForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const departure = document.getElementById('departure').value;
+    const arrival = document.getElementById('arrival').value;
+    const vehicleClass = document.getElementById('vehicle_class').value;
+    const fuelEconomy = document.getElementById('fuel_economy').value;
+    const paidRoads = document.getElementById('paid_roads').checked;
+    const fastRoutes = document.getElementById('fast_routes').checked;
+    const fuelEfficient = document.getElementById('fuel_efficient').checked;
+    const question = document.getElementById('question').value;
+    
+    const sonucDiv = document.getElementById('sonuc');
+    const cevapDiv = document.getElementById('cevap');
+    
+    cevapDiv.innerHTML = '<div class="text-center"><div class="spinner-border text-primary" role="status"><span class="visually-hidden">Yükleniyor...</span></div></div>';
+    sonucDiv.classList.remove('d-none');
+    
+    const formData = new FormData();
+    formData.append('departure', departure);
+    formData.append('arrival', arrival);
+    formData.append('vehicle_class', vehicleClass);
+    formData.append('fuel_economy', fuelEconomy);
+    formData.append('paid_roads', paidRoads);
+    formData.append('fast_routes', fastRoutes);
+    formData.append('fuel_efficient', fuelEfficient);
+    formData.append('question', question);
+    
+    fetch('/sorgula/', {
+        method: 'POST',
+        headers: {
+            'X-CSRFToken': getCookie('csrftoken'),
+        },
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.response) {
+            cevapDiv.innerHTML = data.response.replace(/\n/g, '<br>');
+            getTargetWeather();
+            getCurrentWeather();
+        } else {
+            cevapDiv.innerHTML = '<div class="alert alert-danger">Bir hata oluştu. Lütfen tekrar deneyin.</div>';
+        }
+    })
+    .catch(error => {
+        cevapDiv.innerHTML = '<div class="alert alert-danger">Bir hata oluştu. Lütfen tekrar deneyin.</div>';
+        console.error('Error:', error);
+    });
+});
+
+function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+
+document.body.addEventListener("keydown", function(event) {
+    if (event.key === "Enter") {
+        document.getElementById('submit-button').click();
+    }
+});
+
+
+const apiKey = "5629ed6ce1215b14d2fdb47c2fcd77c1";
+
+function getCurrentWeather(){
+    const city = document.getElementById("departure").value;
+    const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric&lang=tr`;
+
+    fetch(url)
+        .then(response => response.json())
+        .then(data => {
+            if (data.cod === 200) {
+                const weather = data.weather[0].description;
+                const temp = data.main.temp;
+                const feels_like = data.main.feels_like;
+
+                document.getElementById("weather1").innerHTML = `
+                    <h2>📍 ${city}</h2>
+                    <p>🌤 Hava Durumu: ${weather}</p>
+                    <p>🌡 Sıcaklık: ${temp}°C (Hissedilen: ${feels_like}°C)</p>
+                `;
+                document.getElementById("weather1").style.display = 'flex';
+            } else {
+                document.getElementById("weather1").innerHTML = "<p>❌ Şehir bulunamadı!</p>";
+            }
+        })
+        .catch(() => {
+            document.getElementById("weather1").innerHTML = "<p>❌ Veri alınırken hata oluştu.</p>";
+        });
+}
+
+function getTargetWeather(){
+    const city = document.getElementById("arrival").value;
+    const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric&lang=tr`;
+
+    fetch(url)
+        .then(response => response.json())
+        .then(data => {
+            if (data.cod === 200) {
+                const weather = data.weather[0].description;
+                const temp = data.main.temp;
+                const feels_like = data.main.feels_like;
+
+                document.getElementById("weather2").innerHTML = `
+                    <h2>📍 ${city}</h2>
+                    <p>🌤 Hava Durumu: ${weather}</p>
+                    <p>🌡 Sıcaklık: ${temp}°C (Hissedilen: ${feels_like}°C)</p>
+                `;
+                document.getElementById("weather2").style.display = 'flex';
+            } else {
+                document.getElementById("weather2").innerHTML = "<p>❌ Şehir bulunamadı!</p>";
+            }
+        })
+        .catch(() => {
+            document.getElementById("weather2").innerHTML = "<p>❌ Veri alınırken hata oluştu.</p>";
+        });
+}
+
+// Şehir seçildiğinde hava durumu otomatik güncellensin
+document.getElementById("departure").addEventListener("change", getCurrentWeather);
+document.getElementById("arrival").addEventListener("change", getTargetWeather);
+
+// Sayfa ilk açıldığında da kutuları temizle
+document.getElementById("weather1").innerHTML = "";
+document.getElementById("weather2").innerHTML = "";
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/static/yol/script.js"></script>
+</body>
+</html>
